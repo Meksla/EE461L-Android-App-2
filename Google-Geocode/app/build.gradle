@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'myKeystore'
+            keyPassword 'tlymn0d'
+            storeFile file('E:/Dropbox/Keystore/myKeystore.jks')
+            storePassword 'tlymn0d'
+        }
+    }
     compileSdkVersion 19
     buildToolsVersion "20.0.0"
     defaultConfig {
