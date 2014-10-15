@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -30,6 +31,12 @@ public class MyActivity extends FragmentActivity {
 
         List<Address> list = gc.getFromLocationName(location, 1);
 
+        //check if the Geocododer found a location
+        if(list.size() == 0){
+            Toast noLocationToast = Toast.makeText(this, "Location Not Found", Toast.LENGTH_LONG);
+            noLocationToast.show();
+            return;
+        }
 
         Address address = list.get(0);
 
@@ -38,7 +45,9 @@ public class MyActivity extends FragmentActivity {
 
         String toastText = String.valueOf(lat) + String.valueOf(lng);
 
-        Toast.makeText(this, toastText , Toast.LENGTH_LONG);
+        Toast locationToast = Toast.makeText(this, toastText , Toast.LENGTH_LONG);
+        locationToast.show();
+
 
         setUpMapIfNeeded();
         mMap.addMarker(new MarkerOptions()
@@ -53,7 +62,7 @@ public class MyActivity extends FragmentActivity {
                     .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
-                // The Map is verified. It is now safe to manipulate the map.
+            // The Map is verified. It is now safe to manipulate the map.
 
             }
         }

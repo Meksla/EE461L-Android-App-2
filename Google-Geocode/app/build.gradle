@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'keystore'
             keyPassword 'ee461l'
-            storeFile file('C:/Users/Meksla/Dropbox/Keystore/theKeystore.jks')
+            storeFile file('E:/Dropbox/Keystore/theKeystore.jks')
             storePassword 'ee461l'
         }
     }
