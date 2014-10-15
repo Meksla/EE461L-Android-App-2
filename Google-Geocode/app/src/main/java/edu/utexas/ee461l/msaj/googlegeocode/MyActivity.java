@@ -11,10 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.io.IOException;
 import java.util.List;
 
 public class MyActivity extends FragmentActivity {
+    private GoogleMap mMap;
 
     public void geoLocator(View v) throws IOException{
         Geocoder gc = new Geocoder(this);
@@ -33,6 +39,24 @@ public class MyActivity extends FragmentActivity {
         String toastText = String.valueOf(lat) + String.valueOf(lng);
 
         Toast.makeText(this, toastText , Toast.LENGTH_LONG);
+
+        setUpMapIfNeeded();
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(lat, lng))
+                .title(location));
+    }
+
+    private void setUpMapIfNeeded() {
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null) {
+            mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+                    .getMap();
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+                // The Map is verified. It is now safe to manipulate the map.
+
+            }
+        }
     }
 
     @Override
