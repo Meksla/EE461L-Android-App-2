@@ -64,8 +64,9 @@ public class MyActivity extends FragmentActivity {
 
         double lat = address.getLatitude();
         double lng = address.getLongitude();
+        String locality = address.getLocality();
 
-        String toastText = String.valueOf(lat) + String.valueOf(lng);
+        String toastText = "Locality: " + locality;
 
         Toast locationToast = Toast.makeText(this, toastText , Toast.LENGTH_LONG);
         locationToast.show();
